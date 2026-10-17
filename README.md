@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Laboratorio 09: Introducción a Next.js (CSR y SSR)
 
-## Getting Started
+Curso: Desarrollo de Aplicaciones Web Avanzado, Tecsup
+Docente: Edwin William Arévalo Sermeño
+Autora: Nadhira Atanacio
 
-First, run the development server:
+Proyecto en Next.js 16 (App Router, TypeScript y Tailwind CSS) que compara los dos modelos de renderizado: Client-Side Rendering (CSR) y Server-Side Rendering (SSR).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Páginas
+
+| Ruta | Contenido | Renderizado |
+|---|---|---|
+| `/pokemon-csr` | Pokémon aleatorio (PokeAPI) | CSR |
+| `/pokemon-ssr` | Pokémon aleatorio (PokeAPI) | SSR |
+| `/weather` | Dashboard del clima (Open-Meteo): Lima en SSR y otras ciudades en CSR | Híbrido |
+| `/peliculas` | Tarea: galería de películas y series (OMDb API) | Híbrido |
+
+## Tarea: Galería de Películas y Series
+
+- **Populares (SSR):** la lista se obtiene en el servidor antes de enviar la página, así carga más rápido y es mejor para SEO.
+- **Búsqueda (CSR):** usa `'use client'`, `useState` y `useEffect`. Los resultados aparecen mientras escribes, sin recargar la página, y se espera 500 ms después de la última tecla para no hacer una petición por cada letra.
+- **Detalle (CSR):** al elegir un título se abre una ventana modal con la información completa, en la misma página.
+
+## Cómo ejecutarlo
+
+Requisitos: Node.js 20.9 o superior.
+
+1. Instala las dependencias:
 ```
+   npm install
+```
+2. Crea una API key gratuita en https://www.omdbapi.com/apikey.aspx y actívala con el link que llega al correo.
+3. En la raíz del proyecto crea un archivo `.env.local` con esta línea:
+```
+   NEXT_PUBLIC_OMDB_API_KEY=tu_clave
+```
+4. Inicia el servidor de desarrollo:
+```
+   npm run dev
+```
+5. Abre http://localhost:3000/peliculas (o cualquiera de las rutas de la tabla).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+El archivo `.env.local` no se sube al repositorio para mantener la clave privada.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologías
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16, React 19, TypeScript, Tailwind CSS 4 y Axios.
